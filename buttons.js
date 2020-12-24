@@ -7,8 +7,6 @@ const anglesArray = Array.prototype.slice.call(anglesNode);             //кон
 const disabledArray = Array.prototype.slice.call(disabledItems);        //и заблокированные элементы тоже
 const angles = anglesArray.filter(el => !disabledArray.includes(el));   //фильтруем элементы, которые повторяются
 
-console.log(angles) //проверка 
-
 // Это - функции поведения клика и ховера
 const selectItem  = (event) => { 
     const angle = event.target.closest('.angle');
@@ -61,23 +59,14 @@ const disableItem  = (elem) => {
     elem.classList.add('angle-disabled');                           //
 }
 
-// Перебираем элементы, вешаем обработчик клика на каждый
+// Тут итерируется каждый элемент массива angles
 for (let angle of angles) {
     angle.addEventListener('click', selectItem);  
-}
-
-// Обработчики ховера
-for (const angle of angles) {               // Тут итерируется каждый элемент массива angles
     angle.addEventListener('mouseover', hoverItem)
-}
-
-for (const angle of angles) {
     angle.addEventListener('mouseout', hoverItem);
 }
+
 // Итератор массива неактивных элементов
 for (const item of disabledArray) {
     disableItem(item);
 }
-
-
-
